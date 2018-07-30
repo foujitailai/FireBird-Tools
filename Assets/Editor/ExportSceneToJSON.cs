@@ -77,6 +77,18 @@ namespace Assets.Scripts.Editor.Package.Tool
                     writer.Write(img.sprite.name);
                 }
 
+                var nodeInfo = go.GetComponent<NodeInfo>();
+                if (nodeInfo)
+                {
+                    writer.WritePropertyName("node");
+                    writer.WriteObjectStart();
+                        writer.WritePropertyName("oneScreenTime");
+                        writer.Write(nodeInfo.OneScreenTime.ToString());
+                        writer.WritePropertyName("loopUnit");
+                        writer.Write(nodeInfo.LoopUnit.ToString());
+                    writer.WriteObjectEnd();
+                }
+
                 if (tran.childCount > 0)
                 {
                     writer.WritePropertyName("children");
